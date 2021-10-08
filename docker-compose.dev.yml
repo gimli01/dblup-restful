@@ -1,6 +1,18 @@
-version: "2"
+version: "3"
 services:
-  boilerplate-api:
-    command: yarn dev -- -L
+  dblup-restful:
+    command: npm run dev
+    env_file:
+      - .env
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
     environment:
-      - NODE_ENV=development
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: admin
